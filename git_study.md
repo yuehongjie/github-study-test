@@ -2,7 +2,7 @@
 - 注.使用任何的git操作之前，都需要切换到git项目目录下
 > 1. git status 查看当前git仓库状态
 > 2. git init 初始化git仓库
-> 3. git add file 修改file文件的状态为添加，并没有被提交，是存在缓存中
+> 3. git add file 修改file文件的状态为添加，并没有被提交，是存在缓存中（暂存区）
 > 4. git rm --cached file 更改上面文件的状态为无状态(移除缓存)
 > 5. git config user.name yu ;  
      git config user.email 1419699711@qq.com   
@@ -16,12 +16,49 @@
 > 10. git branch a 在当前的基础上新建一个分支名字为 a
 > 11. git checkout a 切换分支到 a
 > 12. git checkout -b a 综合上面两个命令，在当前基础上创建分支a并切换到a
-> 13. git merge a 把a分支的内容合并到master分支，前提要先切换到master分支
+> 13. git merge a 和 git rebase a  
+把a分支的内容合并到master分支，前提要先切换到master分支，两个做法的区别是 merge 是把a中的内容全部粗暴的合并进来，rebase会先比较内容改变的顺序，再按顺序合并
 > 14. git branch -d a 删除分支a
 > 15. git branch -D a 强制删除分支a
 > 16. git tag v1.0 为当前的状态新建一个v1.0的标签
 > 17. git tag 查看历史tag记录
-> 18. git checkout v1.0 切换到v1.0时的状态
+> 18. git checkout v1.0 切换到tag v1.0时的状态  
+      git checkout ffd9f2dd68f1eb21d36cee50dbdd504e95d9c8f7 ,切换到某次commit，这个长序列是每次commit的SHA1值，可以使用 git log 查看  
+      git checkout a.md 撤销/还原a.md的改变，注.checkout 命令只能撤销还没有 add 进暂存区的文件
+> 19. git config --global alias.co checkout 为命令checkout起别名为co,然后在输入命令的时候，就可以使用co替代checkout,如果只针对当前仓库global不是必须的
+> 20. git config alias.plm 'pull origin master' 设置组合别名，这样可以使用 git plm 代替 git pull origin master
+> 21. 一个强大的命令:  
+> git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative  
+格式化日志的输出，可以很清晰的展现日志信息和分支走向  
+这样我们就可以给这个命令起个别名:  
+git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"   
+然后就可以使用 git lg 就可以了
+> 22. git config --global color.ui true 给git的输出着色
+> 23. git config --global core.quotepath false # 设置显示中文文件名  
+在没设置显示中文名之前，我创建了一个新文件 中文名.txt,然后使用 git status查看一下显示如下:![](http://i.imgur.com/PZkJzOS.png)  
+设置显示中文名后，显示如下:
+![](http://i.imgur.com/JynuM6m.png)
+
+> 24. **stash** 命令  
+使用场景，如你正在一个分支a上修改着代码什么的，但是这时候，有一个紧急的任务，需要你切换到另一个分支b去做些工作，而a上的代码还是个半吊子，不想去commit甚至不想去add，这时候**stash** 命令就大有用处了，**前提是没有执行commit**  
+1). **git stash** 把当前分支没有commit的代码先暂存起来，这时使用git status会发现分支很干净
+![](http://i.imgur.com/qRFJVwT.png)  
+2). **git stash list** 可以看到此时暂存区多了一条记录  
+暂存成功后，你就可以切换到b去做其他的功能  
+![](http://i.imgur.com/8WvlEZX.png)   
+b分支的事情做完后，就可以再切换回a分支，继续之前的工作  
+3). **git stash apply**  
+![](http://i.imgur.com/bgGJ2DX.png)  
+执行后，a分支之前的代码就又回来了，然后做好把暂存区的stash记录删除  
+4). **git stash drop**  
+就是把最近的一条stash记录删除， drop后还可以跟 stash_id来删除指定的记录 
+![](http://i.imgur.com/KWxvuMe.png)  
+5). **git stash pop**  
+这个命令相当于同时执行了3和4步骤,谨慎起见，使用 git stash list查看一下是否确实删除了该记录  
+![](http://i.imgur.com/EWTpUbq.png)  
+6). **git stash clear**  
+清空暂存区的记录，drop只是删除一条，drop后可以跟 stash_id来删除指定的记录，不跟就是删除最近的
+
 
 #github初步
 - 在向github提交代码前，需要ssh授权
