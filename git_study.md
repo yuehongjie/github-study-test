@@ -1,3 +1,5 @@
+**p.s. 跟着张哥的Git教程一步一步来的**
+
 #git初步       
 - 注.使用任何的git操作之前，都需要切换到git项目目录下
 > 1. git status 查看当前git仓库状态
@@ -58,7 +60,14 @@ b分支的事情做完后，就可以再切换回a分支，继续之前的工作
 ![](http://i.imgur.com/EWTpUbq.png)  
 6). **git stash clear**  
 清空暂存区的记录，drop只是删除一条，drop后可以跟 stash_id来删除指定的记录，不跟就是删除最近的
-
+> 25. 冲突解决  
+假设我在a分支和本地分支上同时修改了文件test.txt,在合并啊时候就会出现冲突  
+![](http://i.imgur.com/BsLFOgz.png)  
+用git diff可以查看冲突    
+![](http://i.imgur.com/g3AIrH6.png)  
+解决冲突要做的就是修改冲突的文件test.txt为最终提交版本，并去掉其中的标识符   
+(标识符: ++<<<<<<< HEAD；++=======； ++>>>>>>>>)  
+修改然后 add 和 commit
 
 #github初步
 - 在向github提交代码前，需要ssh授权
