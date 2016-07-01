@@ -1,44 +1,44 @@
 **p.s. 跟着张哥的Git教程一步一步来的**
 
 #git初步       
-- 注.使用任何的git操作之前，都需要切换到git项目目录下
-> 1. git status 查看当前git仓库状态
-> 2. git init 初始化git仓库
-> 3. git add file 修改file文件的状态为添加，并没有被提交，是存在缓存中（暂存区）
-> 4. git rm --cached file 更改上面文件的状态为无状态(移除缓存)
+- 注.使用任何的git操作之前，都需要切换到git项目目录下  
+> 1. git status 查看当前git仓库状态  
+> 2. git init 初始化git仓库  
+> 3. git add file 修改file文件的状态为添加，并没有被提交，是存在缓存中（暂存区）   
+> 4. git rm --cached file 更改上面文件的状态为无状态(移除缓存)  
 > 5. git config user.name yu ;  
      git config user.email 1419699711@qq.com   
      添加git用户，在进行提交之前如果没有配置用户会报错,这是针对当前git仓库的  
 	 git config --global user.name yu，可以使用 --global参数设置全局的
-> 6. git commit -m message 提交并附带提交信息
-> 7. git log 提交日志
+> 6. git commit -m message 提交并附带提交信息  
+> 7. git log 提交日志  
 > 8. git config core.autoclrf false 每次使用git命令(add,commit)的时候会报warning: LF will be replaced by CRLF in XXXX ，这是自动添加换行(linux下格式)引起的问题  
-可以使用 --global参数设置全局的
-> 9. git branch 查看当前分支的情况
-> 10. git branch a 在当前的基础上新建一个分支名字为 a
-> 11. git checkout a 切换分支到 a
-> 12. git checkout -b a 综合上面两个命令，在当前基础上创建分支a并切换到a
+可以使用 --global参数设置全局的  
+> 9. git branch 查看当前分支的情况  
+> 10. git branch a 在当前的基础上新建一个分支名字为 a  
+> 11. git checkout a 切换分支到 a  
+> 12. git checkout -b a 综合上面两个命令，在当前基础上创建分支a并切换到a  
 > 13. git merge a 和 git rebase a  
 把a分支的内容合并到master分支，前提要先切换到master分支，两个做法的区别是 merge 是把a中的内容全部粗暴的合并进来，rebase会先比较内容改变的顺序，再按顺序合并
-> 14. git branch -d a 删除分支a
-> 15. git branch -D a 强制删除分支a
-> 16. git tag v1.0 为当前的状态新建一个v1.0的标签
-> 17. git tag 查看历史tag记录
+> 14. git branch -d a 删除分支a  
+> 15. git branch -D a 强制删除分支a  
+> 16. git tag v1.0 为当前的状态新建一个v1.0的标签  
+> 17. git tag 查看历史tag记录  
 > 18. git checkout v1.0 切换到tag v1.0时的状态  
       git checkout ffd9f2dd68f1eb21d36cee50dbdd504e95d9c8f7 ,切换到某次commit，这个长序列是每次commit的SHA1值，可以使用 git log 查看  
-      git checkout a.md 撤销/还原a.md的改变，注.checkout 命令只能撤销还没有 add 进暂存区的文件
-> 19. git config --global alias.co checkout 为命令checkout起别名为co,然后在输入命令的时候，就可以使用co替代checkout,如果只针对当前仓库global不是必须的
-> 20. git config alias.plm 'pull origin master' 设置组合别名，这样可以使用 git plm 代替 git pull origin master
+      git checkout a.md 撤销/还原a.md的改变，注.checkout 命令只能撤销还没有 add 进暂存区的文件  
+> 19. git config --global alias.co checkout   为命令checkout起别名为co,然后在输入命令的时候，就可以使用co替代checkout,如果只针对当前仓库global不是必须的  
+> 20. git config alias.plm 'pull origin master' 设置组合别名，这样可以使用 git plm 代替 git pull origin master  
 > 21. 一个强大的命令:  
 > git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative  
 格式化日志的输出，可以很清晰的展现日志信息和分支走向  
 这样我们就可以给这个命令起个别名:  
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"   
-然后就可以使用 git lg 就可以了
-> 22. git config --global color.ui true 给git的输出着色
+然后就可以使用 git lg 就可以了  
+> 22. git config --global color.ui true 给git的输出着色  
 > 23. git config --global core.quotepath false # 设置显示中文文件名  
-在没设置显示中文名之前，我创建了一个新文件 中文名.txt,然后使用 git status查看一下显示如下:![](http://i.imgur.com/PZkJzOS.png)  
-设置显示中文名后，显示如下:
+在没设置显示中文名之前，我创建了一个新文件 中文名.txt,然后使用 git status查看一下显示如下  :![](http://i.imgur.com/PZkJzOS.png)  
+设置显示中文名后，显示如下:  
 ![](http://i.imgur.com/JynuM6m.png)
 
 > 24. **stash** 命令  
