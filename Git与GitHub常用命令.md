@@ -10,7 +10,7 @@
 -	**git status**  
  	查看当前 git 仓库的状态
 
--	**git add <file\>**  
+-	**git add file**  
   	修改 file 文件的状态为添加，并没有提交，只是存在缓存区
 
 -   **git rm --cached file**  
